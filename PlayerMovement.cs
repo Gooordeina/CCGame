@@ -12,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
     public Transform groundCheck;
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
+
+    public Animator animator;
     
     Vector3 velocity;
     bool isGrounded;
@@ -34,5 +36,36 @@ public class PlayerMovement : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
 
         controller.Move(velocity * Time.deltaTime);
+
+        animator.GetBool("Walk");
+        animator.GetBool("Bool");
+
+        if(Input.GetKey(KeyCode.W))
+        {
+            animator.SetBool("Walk", true);
+        }
+
+        if(Input.GetKey(KeyCode.S))
+        {
+            animator.SetBool("Walk", true);
+        }
+        else if(!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S))
+        {
+            animator.SetBool("Walk", false);
+        }
+
+         if(Input.GetKey(KeyCode.A))
+        {
+            animator.SetBool("Bool", true);
+        }
+
+        if(Input.GetKey(KeyCode.D))
+        {
+            animator.SetBool("Bool", true);
+        }
+        else if(!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
+        {
+            animator.SetBool("Bool", false);
+        }
     }
 }
