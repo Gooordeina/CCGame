@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerMovement : MonoBehaviour
 {
     public CharacterController controller;
-
+    
     public float speed = 8f;
+    public TextMeshProUGUI countText;
+    private int count;
     public float gravity = -9.81f;
 
     public Transform groundCheck;
@@ -17,6 +20,18 @@ public class PlayerMovement : MonoBehaviour
     
     Vector3 velocity;
     bool isGrounded;
+
+    void Start ()
+    {
+        count = 0; 
+
+        SetCountText();
+    }
+
+    void SetCountText ()
+    {
+        countText.text = "Count:" + count.ToString() + "/3";
+    }
     void Update()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
@@ -74,6 +89,9 @@ public class PlayerMovement : MonoBehaviour
         if(other.gameObject.CompareTag("PickUpObject"))
         {
             other.gameObject.SetActive(false);
+            count = count + 1;
+
+            SetCountText();
         }
     }
 }
