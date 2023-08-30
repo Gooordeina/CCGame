@@ -68,4 +68,12 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("Bool", false);
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.CompareTag("PickUpObject"))
+        {
+            other.gameObject.SetActive(false);
+        }
+    }
 }
