@@ -6,7 +6,7 @@ using TMPro;
 public class PlayerMovement : MonoBehaviour
 {
     public CharacterController controller;
-    
+    public GameObject winpanel;
     public float speed = 8f;
     public TextMeshProUGUI countText;
     private int count;
@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start ()
     {
+        winpanel.SetActive(false);
         count = 0; 
 
         SetCountText();
@@ -34,6 +35,10 @@ public class PlayerMovement : MonoBehaviour
     }
     void Update()
     {
+        if (count == 3)
+        {
+            winpanel.SetActive(true);
+        }
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
         if(isGrounded && velocity.y < 0)
