@@ -7,9 +7,10 @@ public class PlayerMovement : MonoBehaviour
 {
     public CharacterController controller;
     public GameObject winpanel;
+    public static bool GameIsPaused = false;
     public float speed = 8f;
     public TextMeshProUGUI countText;
-    private int count;
+    public int count;
     public float gravity = -9.81f;
 
     public Transform groundCheck;
@@ -38,7 +39,12 @@ public class PlayerMovement : MonoBehaviour
         if (count == 3)
         {
             winpanel.SetActive(true);
+            Time.timeScale = 0f;
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
         }
+
+
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
         if(isGrounded && velocity.y < 0)
@@ -89,11 +95,11 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider Yellowsquares)
     {
-        if(other.gameObject.CompareTag("PickUpObject"))
+        if(Yellowsquares.gameObject.CompareTag("PickUpObject"))
         {
-            other.gameObject.SetActive(false);
+            Yellowsquares.gameObject.SetActive(false);
             count = count + 1;
 
             SetCountText();
