@@ -8,13 +8,15 @@ public class PauseMenu : MonoBehaviour
 {
     public static bool GameIsPaused = false;
     public GameObject Player;
+    public GameObject Countdown;
 
     public GameObject pauseMenuUI;
     // Update is called once per frame
     void Update()
     {
         PlayerMovement Script = Player.GetComponent<PlayerMovement>();
-        if (Input.GetKeyDown(KeyCode.Escape) && Script.count != 3)
+        CountdownTimer Script2 = Countdown.GetComponent<CountdownTimer>();
+        if (Input.GetKeyDown(KeyCode.Escape) && Script.count != 3 && Script2.currentTime != 0)
         {
             if (GameIsPaused)
             {
