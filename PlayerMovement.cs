@@ -1,3 +1,4 @@
+//this is the first person perspective script.
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
