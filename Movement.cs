@@ -1,3 +1,6 @@
+
+//this is the third person perspective script. it is not applied in the game
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
